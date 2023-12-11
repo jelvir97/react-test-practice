@@ -92,3 +92,28 @@ it('hides the left arrow when viewing first image', ()=>{
     expect(container.querySelector(".bi-arrow-left-circle"))
     .not.toBeInTheDocument();
 })
+
+it('hides the right arrow when viewing last image', ()=>{
+  const { container } = render(
+    <Carousel
+      photos={TEST_IMAGES}
+      title="images for testing"
+    />
+  );
+    //clicks right arrow twice
+    const rightArrow = container.querySelector(".bi-arrow-right-circle");
+    fireEvent.click(rightArrow);
+    fireEvent.click(rightArrow);
+
+    // expect the first image to show, but not the second
+    expect(
+      container.querySelector('img[alt="testing image 3"]')
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('img[alt="testing image 2"]')
+    ).not.toBeInTheDocument();
+    
+    //expect left arrow to be hidden
+    expect(rightArrow)
+    .not.toBeInTheDocument();
+})

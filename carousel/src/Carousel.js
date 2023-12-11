@@ -48,10 +48,11 @@ import Card from "./Card";
           currNum={currCardIdx + 1}
           totalNum={total}
         />
+        {currCardIdx===total-1 ? null :
         <i
           className="bi bi-arrow-right-circle"
           onClick={goForward}
-        />
+        />}
       </div>
     </div>
   );
